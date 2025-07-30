@@ -37,13 +37,13 @@ export default function Header() {
             : 'bg-white/95 backdrop-blur-md'
           }`}
         initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        animate={{ y: isMenuOpen ? "-100%" : 0 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
       >
         <div className="max-w-7xl mx-auto px-8 lg:px-12 py-6 flex justify-between items-center">
-          {/* Logo - Spaced out letters like in the reference */}
+          {/* Logo */}
           <motion.div
-            className={`font-serif text-2xl lg:text-3xl tracking-[0.3em] transition-colors duration-500 text-gray-900 cursor-pointer`}
+            className={`font-serif text-2xl lg:text-3xl tracking-[0.2em] transition-colors duration-500 text-gray-900 cursor-pointer`}
             whileHover={{ scale: 1.02 }}
             transition={{ duration: 0.3 }}
           >
@@ -51,7 +51,7 @@ export default function Header() {
               onClick={() => scrollToSection('home')}
               className="hover:opacity-80 transition-opacity duration-300"
             >
-              {"Florilège".split("").map((letter, index) => (
+              {"BuildUrWeb".split("").map((letter, index) => (
                 <span
                   key={index}
                   className="inline-block hover:scale-110 transition-transform duration-200"
@@ -65,21 +65,12 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-12">
-            <motion.button
-              onClick={() => scrollToSection('en')}
-              className={`font-light text-sm tracking-[0.15em] uppercase transition-all duration-300 text-gray-700 hover:text-gray-900`}
-              whileHover={{ y: -1 }}
-              transition={{ duration: 0.2 }}
-            >
-              Japanese
-            </motion.button>
-
             <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
               <Button
-                onClick={() => scrollToSection('reservations')}
+                onClick={() => scrollToSection('contact')}
                 className={`font-light text-sm tracking-[0.1em] rounded-full px-8 py-2.5 border transition-all duration-300 bg-gray-900 text-white border-gray-900 hover:bg-gray-800`}
               >
-                Reservations →
+                Get a Quote →
               </Button>
             </motion.div>
 
@@ -125,7 +116,6 @@ export default function Header() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4 }}
           >
-            {/* Left side - Images */}
             <motion.div
               className="hidden lg:block w-1/2 relative overflow-hidden"
               initial={{ x: -100, opacity: 0 }}
@@ -134,8 +124,8 @@ export default function Header() {
               transition={{ duration: 0.6, delay: 0.1 }}
             >
               <motion.img
-                src="https://ext.same-assets.com/1838283741/2047500388.jpeg"
-                alt="Restaurant Interior"
+                src="https://images.unsplash.com/photo-1557862921-37829c790f19?q=80&w=2071&auto=format&fit=crop"
+                alt="Two professionals collaborating"
                 className="w-full h-full object-cover"
                 initial={{ scale: 1.1 }}
                 animate={{ scale: 1 }}
@@ -149,7 +139,6 @@ export default function Header() {
               />
             </motion.div>
 
-            {/* Right side - Menu */}
             <motion.div
               className="w-full lg:w-1/2 p-16 flex flex-col justify-center"
               initial={{ x: 100, opacity: 0 }}
@@ -160,9 +149,8 @@ export default function Header() {
               <nav className="space-y-12">
                 {[
                   { id: 'home', label: 'Home' },
-                  { id: 'concept', label: 'Concept' },
-                  { id: 'chef', label: 'Chef' },
-                  { id: 'reservations', label: 'Reservations' },
+                  { id: 'about', label: 'About Us' },
+                  { id: 'services', label: 'Services' },
                   { id: 'contact', label: 'Contact' }
                 ].map((item, index) => (
                   <motion.button
@@ -185,18 +173,17 @@ export default function Header() {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.9 }}
               >
-                <p className="text-lg tracking-[0.1em]">フロリレージュ</p>
+                <p className="text-lg tracking-[0.1em]">BuildUrWeb</p>
                 <div className="space-y-2">
-                  <p>105-0001</p>
-                  <p>東京都港区虎ノ門5-10-7</p>
-                  <p>麻布台ヒルズ ガーデンプラザD 2F</p>
+                  <p>Digital Craftsmanship</p>
+                  <p>Johor Bahru, Malaysia</p>
                 </div>
                 <motion.p
                   whileHover={{ scale: 1.02 }}
                   className="pt-4"
                 >
-                  <a href="tel:03-6435-8018" className="hover:opacity-70 transition-opacity duration-300">
-                    03-6435-8018
+                  <a href="mailto:hello@buildurweb.com" className="hover:opacity-70 transition-opacity duration-300">
+                    hello@buildurweb.com
                   </a>
                 </motion.p>
               </motion.div>

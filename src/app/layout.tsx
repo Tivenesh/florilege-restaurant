@@ -15,8 +15,8 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Restaurant Florilège｜フロリレージュ",
-  description: "Plant-based French restaurant in Tokyo featuring innovative cuisine by Chef Hiroyasu Kawate. Michelin two-star dining experience.",
+  title: "BuildUrWeb | Where Design Meets Functionality",
+  description: "BuildUrWeb is a premier web service agency founded by Tivenesh and Zafran, two idealist UTM Computer Science students, dedicated to crafting exceptional digital experiences.",
 };
 
 export default function RootLayout({

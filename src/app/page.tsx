@@ -1,6 +1,6 @@
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
-import ConceptSection from "@/components/ConceptSection";
+import AboutSection from "@/components/Aboutus";
 import ChefSection from "@/components/ChefSection";
 import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
@@ -10,7 +10,7 @@ export default function Home() {
     <main className="min-h-screen">
       <Header />
       <HeroSection />
-      <ConceptSection />
+      <AboutSection />
       <ChefSection />
 
       {/* Reservations Section */}
