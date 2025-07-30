@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-// Changed 'User' to 'UserRound' to fix the reference error
 import { Send, UserRound, Mail, Phone, MessageSquare } from "lucide-react";
 
 export default function ContactForm() {
@@ -16,6 +15,7 @@ export default function ContactForm() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData(prev => ({
@@ -27,23 +27,38 @@ export default function ContactForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setError("");
 
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        message: ""
+    try {
+      const response = await fetch("https://formspree.io/f/xvgqqonr", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
       });
-    }, 3000);
+
+      if (response.ok) {
+        setIsSubmitted(true);
+        // Reset form after 3 seconds
+        setTimeout(() => {
+          setIsSubmitted(false);
+          setFormData({
+            name: "",
+            email: "",
+            phone: "",
+            message: ""
+          });
+        }, 3000);
+      } else {
+        throw new Error("Failed to send message");
+      }
+    } catch (err) {
+      setError("Failed to send message. Please try again.");
+      console.error("Form submission error:", err);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (isSubmitted) {
@@ -82,7 +97,7 @@ export default function ContactForm() {
         </motion.div>
         <h3 className="text-2xl font-playfair mb-4">Thank You!</h3>
         <p className="text-gray-600">
-          Your quote request has been sent.
+          Your request has been sent.
           <br />
           We will get back to you within 24 hours.
         </p>
@@ -106,7 +121,7 @@ export default function ContactForm() {
           transition={{ delay: 0.2, duration: 0.8 }}
           viewport={{ once: true }}
         >
-          Get a Quote
+          Contact Us
         </motion.h2>
         <motion.p
           className="text-gray-600 leading-relaxed"
@@ -119,6 +134,17 @@ export default function ContactForm() {
         </motion.p>
       </div>
 
+      {error && (
+        <motion.div
+          className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mb-6"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          {error}
+        </motion.div>
+      )}
+
       <motion.form
         onSubmit={handleSubmit}
         className="space-y-6"
@@ -129,8 +155,9 @@ export default function ContactForm() {
       >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }}>
-            {/* Replaced the icon component here */}
-            <label className="block text-sm font-inter mb-2 florilege-text-dark flex items-center"><UserRound size={16} className="mr-1" /> Your Name *</label>
+            <label className="block text-sm font-inter mb-2 florilege-text-dark flex items-center">
+              <UserRound size={16} className="mr-1" /> Your Name *
+            </label>
             <input
               type="text"
               name="name"
@@ -143,7 +170,9 @@ export default function ContactForm() {
           </motion.div>
 
           <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }}>
-            <label className="block text-sm font-inter mb-2 florilege-text-dark flex items-center"><Mail size={16} className="mr-1" /> Email Address *</label>
+            <label className="block text-sm font-inter mb-2 florilege-text-dark flex items-center">
+              <Mail size={16} className="mr-1" /> Email Address *
+            </label>
             <input
               type="email"
               name="email"
@@ -157,7 +186,9 @@ export default function ContactForm() {
         </div>
 
         <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }}>
-          <label className="block text-sm font-inter mb-2 florilege-text-dark flex items-center"><Phone size={16} className="mr-1" /> Phone Number</label>
+          <label className="block text-sm font-inter mb-2 florilege-text-dark flex items-center">
+            <Phone size={16} className="mr-1" /> Phone Number
+          </label>
           <input
             type="tel"
             name="phone"
@@ -169,7 +200,9 @@ export default function ContactForm() {
         </motion.div>
 
         <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }}>
-          <label className="block text-sm font-inter mb-2 florilege-text-dark flex items-center"><MessageSquare size={16} className="mr-1" /> Project Details</label>
+          <label className="block text-sm font-inter mb-2 florilege-text-dark flex items-center">
+            <MessageSquare size={16} className="mr-1" /> Project Details
+          </label>
           <textarea
             name="message"
             value={formData.message}
@@ -188,7 +221,7 @@ export default function ContactForm() {
           <Button
             type="submit"
             disabled={isSubmitting}
-            className="bg-black text-white px-12 py-4 rounded-full hover:bg-gray-800 transition-all duration-300 flex items-center space-x-2 mx-auto"
+            className="bg-black text-white px-12 py-4 rounded-full hover:bg-gray-800 transition-all duration-300 flex items-center space-x-2 mx-auto disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isSubmitting ? (
               <motion.div

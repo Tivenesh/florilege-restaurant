@@ -38,7 +38,7 @@ export function HeroSection() {
             </ScrollReveal>
             <ScrollReveal direction="up" delay={1200}>
               <p className="font-inter text-lg md:text-xl font-light tracking-wide opacity-90 max-w-2xl mx-auto">
-                Where your digital vision meets exceptional craftsmanship
+                We Build It. You Own It. We Rock It.
               </p>
             </ScrollReveal>
           </div>

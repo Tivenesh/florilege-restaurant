@@ -41,9 +41,9 @@ export function LoadingAnimation() {
         <h1 className="font-playfair text-5xl md:text-7xl tracking-widest mb-8">
           BuildUrWèb
         </h1>
-        
+
         <p className="font-inter text-lg md:text-xl tracking-wide text-gray-600">
-          Where design meets function
+          We Build It. You Own It. We Rock It.
         </p>
       </div>
     </motion.div>

@@ -11,7 +11,6 @@ export default function Home() {
     <main className="min-h-screen">
       <Header />
       <HeroSection />
-      <ServicesSection />
       <ServicesSection /> {/* Replaced ChefSection with ServicesSection */}
       <AboutSection />
       {/* Get a Quote Section */}

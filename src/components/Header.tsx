@@ -4,10 +4,12 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { LoadingAnimation } from "./animations/LoadingAnimation";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [showLoading, setShowLoading] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,6 +29,17 @@ export default function Header() {
       });
       setIsMenuOpen(false);
     }
+  };
+
+  const handleLogoClick = () => {
+    setShowLoading(true);
+    // Close menu if it's open
+    setIsMenuOpen(false);
+
+    // Hide loading animation after 3 seconds (2 seconds rotation + 1 second exit)
+    setTimeout(() => {
+      setShowLoading(false);
+    }, 3000);
   };
 
   return (
@@ -49,7 +62,7 @@ export default function Header() {
                 transition={{ duration: 0.3 }}
               >
                 <button
-                  onClick={() => scrollToSection('home')}
+                  onClick={handleLogoClick}
                   className="hover:opacity-80 transition-opacity duration-300"
                 >
                   {"BuildUrWèb".split("").map((letter, index) => (
@@ -71,7 +84,7 @@ export default function Header() {
                     onClick={() => scrollToSection('get-a-quote')}
                     className={`font-light text-sm tracking-[0.1em] rounded-full px-8 py-2.5 border transition-all duration-300 bg-gray-900 text-white border-gray-900 hover:bg-gray-800`}
                   >
-                    Get a Quote →
+                    Contact Us →
                   </Button>
                 </motion.div>
 
@@ -129,7 +142,7 @@ export default function Header() {
                     onClick={() => scrollToSection('get-a-quote')}
                     className="font-light text-sm tracking-[0.1em] rounded-full px-8 py-2.5 border transition-all duration-300 bg-gray-900 text-white border-gray-900 hover:bg-gray-800"
                   >
-                    Get a Quote →
+                    Contact Us →
                   </Button>
                 </motion.div>
 
@@ -202,9 +215,10 @@ export default function Header() {
               <nav className="space-y-12">
                 {[
                   { id: 'home', label: 'Home' },
-                  { id: 'about', label: 'About Us' },
+
                   { id: 'services', label: 'Services' },
-                  { id: 'get-a-quote', label: 'Contact' }
+                  { id: 'about', label: 'About Us' },
+                  { id: 'get-a-quote', label: 'Contact Us' }
                 ].map((item, index) => (
                   <motion.button
                     key={item.id}
@@ -243,6 +257,11 @@ export default function Header() {
             </motion.div>
           </motion.div>
         )}
+      </AnimatePresence>
+
+      {/* Loading Animation */}
+      <AnimatePresence>
+        {showLoading && <LoadingAnimation />}
       </AnimatePresence>
     </>
   );

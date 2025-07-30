@@ -160,7 +160,7 @@ export default function HeroSection() {
           animate={{ opacity: 0.9, y: 0 }}
           transition={{ duration: 1, delay: 1.5, ease: "easeOut" }}
         >
-          Where design meets function
+          We Build It. You Own It. We Rock It.
         </motion.p>
       </motion.div>
 
