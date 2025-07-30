@@ -250,7 +250,7 @@ export default function Header() {
                   className="pt-4"
                 >
                   <a href="mailto:hello@BuildUrWèb.com" className="hover:opacity-70 transition-opacity duration-300">
-                    hello@BuildUrWèb.com
+                    buildurwebapp@gmail.com
                   </a>
                 </motion.p>
               </motion.div>
