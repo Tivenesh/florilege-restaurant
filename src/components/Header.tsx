@@ -184,13 +184,13 @@ export default function Header() {
           >
             {/* Logo Animation Section - replaces the image */}
             <motion.div
-              className="hidden lg:flex w-1/2 items-center justify-center bg-white"
+              className="hidden lg:flex w-1/2 items-center justify-center bg-black"
               initial={{ x: -100, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: -100, opacity: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
             >
-              <div className="flex flex-col items-center text-center text-gray-900">
+              <div className="flex flex-col items-center text-white text-center text-gray-900">
                 {/* Animated Logo Circle */}
                 <motion.div
                   className="mb-12"
@@ -199,7 +199,7 @@ export default function Header() {
                   transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
                 >
                   <motion.div
-                    className="w-24 h-24 border-2 border-gray-900 rounded-full flex items-center justify-center"
+                    className="w-24 h-24 border-2 border-white-900 rounded-full flex items-center justify-center"
                     animate={{ rotate: 360 }}
                     transition={{
                       duration: 8,
@@ -207,7 +207,7 @@ export default function Header() {
                       ease: "linear",
                     }}
                   >
-                    <svg width="48" height="48" viewBox="0 0 40 40" className="text-gray-900 fill-current">
+                    <svg width="48" height="48" viewBox="0 0 40 40" className="text-white-900 fill-current">
                       <circle cx="20" cy="20" r="3" />
                       <circle cx="20" cy="10" r="2" />
                       <circle cx="20" cy="30" r="2" />
@@ -233,7 +233,7 @@ export default function Header() {
 
                 {/* Animated Tagline */}
                 <motion.p
-                  className="font-inter text-base md:text-lg tracking-wide text-gray-600"
+                  className="font-inter text-base md:text-lg tracking-wide text-white-600"
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.8, duration: 0.6 }}
