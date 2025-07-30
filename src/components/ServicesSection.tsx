@@ -1,28 +1,31 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { Brush, Code, Rocket } from "lucide-react";
+import { ShoppingCart, Brush, Rocket } from "lucide-react";
 
 const services = [
   {
-    icon: Brush,
-    title: "UI/UX Design",
-    description: "Crafting intuitive and beautiful user interfaces that provide a seamless user experience from the first click."
+    icon: ShoppingCart,
+    title: "E-commerce Solutions",
+    description: "From boutique online stores to large-scale marketplaces, we build secure and scalable e-commerce platforms that drive sales and grow with your business."
   },
   {
-    icon: Code,
-    title: "Web Development",
-    description: "Building robust, scalable, and high-performance websites using the latest technologies and best practices."
+    icon: Brush,
+    title: "Custom Websites",
+    description: "We create bespoke websites for any purpose—be it for fitness trainers, corporate portfolios, or personal brands—ensuring a unique and engaging online presence."
   },
   {
     icon: Rocket,
     title: "SEO & Performance",
-    description: "Optimizing your site for search engines and ensuring lightning-fast load times to maximize reach and engagement."
+    description: "Optimizing your site for search engines and ensuring lightning-fast load times to maximize your reach, engagement, and conversion rates."
   }
 ];
 
 export default function ServicesSection() {
+  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
+
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.2,
@@ -59,19 +62,33 @@ export default function ServicesSection() {
           variants={containerVariants}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
+          onMouseLeave={() => setHoveredCard(null)}
         >
           {services.map((service) => {
             const Icon = service.icon;
+            const isHovered = hoveredCard === service.title;
             return (
               <motion.div
                 key={service.title}
                 className="p-8 bg-white rounded-lg shadow-md"
                 variants={itemVariants}
+                onMouseEnter={() => setHoveredCard(service.title)}
+                animate={{
+                  scale: isHovered ? 1.05 : 1,
+                  filter: hoveredCard && !isHovered ? "blur(4px)" : "blur(0px)",
+                  transition: { duration: 0.4, ease: "easeInOut" },
+                }}
               >
                 <div className="flex justify-center mb-6">
-                  <div className="w-16 h-16 bg-black text-white rounded-full flex items-center justify-center">
+                  <motion.div
+                    className="w-16 h-16 bg-black text-white rounded-full flex items-center justify-center"
+                    animate={{
+                      rotate: isHovered ? 360 : 0,
+                      transition: { duration: 0.5, ease: "easeInOut" },
+                    }}
+                  >
                     <Icon size={32} />
-                  </div>
+                  </motion.div>
                 </div>
                 <h3 className="font-playfair text-2xl mb-4 florilege-text-dark">{service.title}</h3>
                 <p className="text-gray-600 leading-relaxed">{service.description}</p>

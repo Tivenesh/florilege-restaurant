@@ -67,7 +67,7 @@ export default function Header() {
           <div className="hidden lg:flex items-center space-x-12">
             <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
               <Button
-                onClick={() => scrollToSection('contact')}
+                onClick={() => scrollToSection('get-a-quote')}
                 className={`font-light text-sm tracking-[0.1em] rounded-full px-8 py-2.5 border transition-all duration-300 bg-gray-900 text-white border-gray-900 hover:bg-gray-800`}
               >
                 Get a Quote →
@@ -151,7 +151,7 @@ export default function Header() {
                   { id: 'home', label: 'Home' },
                   { id: 'about', label: 'About Us' },
                   { id: 'services', label: 'Services' },
-                  { id: 'contact', label: 'Contact' }
+                  { id: 'get-a-quote', label: 'Contact' }
                 ].map((item, index) => (
                   <motion.button
                     key={item.id}

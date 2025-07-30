@@ -3,23 +3,21 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Send, Calendar, Users, MessageSquare } from "lucide-react";
+// Changed 'User' to 'UserRound' to fix the reference error
+import { Send, UserRound, Mail, Phone, MessageSquare } from "lucide-react";
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
-    date: "",
-    time: "",
-    guests: "2",
     message: ""
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData(prev => ({
       ...prev,
       [e.target.name]: e.target.value
@@ -43,9 +41,6 @@ export default function ContactForm() {
         name: "",
         email: "",
         phone: "",
-        date: "",
-        time: "",
-        guests: "2",
         message: ""
       });
     }, 3000);
@@ -85,10 +80,11 @@ export default function ContactForm() {
             />
           </motion.svg>
         </motion.div>
-        <h3 className="text-2xl font-playfair mb-4">ありがとうございます</h3>
+        <h3 className="text-2xl font-playfair mb-4">Thank You!</h3>
         <p className="text-gray-600">
-          ご予約のお問い合わせを承りました。<br />
-          24時間以内にお返事いたします。
+          Your quote request has been sent.
+          <br />
+          We will get back to you within 24 hours.
         </p>
       </motion.div>
     );
@@ -110,7 +106,7 @@ export default function ContactForm() {
           transition={{ delay: 0.2, duration: 0.8 }}
           viewport={{ once: true }}
         >
-          Reservation Request
+          Get a Quote
         </motion.h2>
         <motion.p
           className="text-gray-600 leading-relaxed"
@@ -119,8 +115,7 @@ export default function ContactForm() {
           transition={{ delay: 0.4, duration: 0.8 }}
           viewport={{ once: true }}
         >
-          ご予約をご希望の方は、下記フォームよりお問い合わせください。<br />
-          お席の空き状況を確認の上、お返事いたします。
+          Ready to start your project? Fill out the form below, and we'll get back to you with a personalized quote.
         </motion.p>
       </div>
 
@@ -132,15 +127,10 @@ export default function ContactForm() {
         transition={{ delay: 0.6, duration: 0.8 }}
         viewport={{ once: true }}
       >
-        {/* Personal Information */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <motion.div
-            whileHover={{ scale: 1.02 }}
-            transition={{ duration: 0.2 }}
-          >
-            <label className="block text-sm font-inter mb-2 florilege-text-dark">
-              お名前 *
-            </label>
+          <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }}>
+            {/* Replaced the icon component here */}
+            <label className="block text-sm font-inter mb-2 florilege-text-dark flex items-center"><UserRound size={16} className="mr-1" /> Your Name *</label>
             <input
               type="text"
               name="name"
@@ -148,17 +138,12 @@ export default function ContactForm() {
               onChange={handleChange}
               required
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent transition-all duration-300"
-              placeholder="山田 太郎"
+              placeholder="John Doe"
             />
           </motion.div>
 
-          <motion.div
-            whileHover={{ scale: 1.02 }}
-            transition={{ duration: 0.2 }}
-          >
-            <label className="block text-sm font-inter mb-2 florilege-text-dark">
-              メールアドレス *
-            </label>
+          <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }}>
+            <label className="block text-sm font-inter mb-2 florilege-text-dark flex items-center"><Mail size={16} className="mr-1" /> Email Address *</label>
             <input
               type="email"
               name="email"
@@ -166,117 +151,35 @@ export default function ContactForm() {
               onChange={handleChange}
               required
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent transition-all duration-300"
-              placeholder="example@email.com"
+              placeholder="john.doe@example.com"
             />
           </motion.div>
         </div>
 
-        <motion.div
-          whileHover={{ scale: 1.02 }}
-          transition={{ duration: 0.2 }}
-        >
-          <label className="block text-sm font-inter mb-2 florilege-text-dark">
-            電話番号
-          </label>
+        <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }}>
+          <label className="block text-sm font-inter mb-2 florilege-text-dark flex items-center"><Phone size={16} className="mr-1" /> Phone Number</label>
           <input
             type="tel"
             name="phone"
             value={formData.phone}
             onChange={handleChange}
             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent transition-all duration-300"
-            placeholder="03-1234-5678"
+            placeholder="+1 (555) 123-4567"
           />
         </motion.div>
 
-        {/* Reservation Details */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <motion.div
-            whileHover={{ scale: 1.02 }}
-            transition={{ duration: 0.2 }}
-          >
-            <label className="block text-sm font-inter mb-2 florilege-text-dark flex items-center">
-              <Calendar size={16} className="mr-1" />
-              ご希望日 *
-            </label>
-            <input
-              type="date"
-              name="date"
-              value={formData.date}
-              onChange={handleChange}
-              required
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent transition-all duration-300"
-            />
-          </motion.div>
-
-          <motion.div
-            whileHover={{ scale: 1.02 }}
-            transition={{ duration: 0.2 }}
-          >
-            <label className="block text-sm font-inter mb-2 florilege-text-dark">
-              ご希望時間 *
-            </label>
-            <select
-              name="time"
-              value={formData.time}
-              onChange={handleChange}
-              required
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent transition-all duration-300"
-            >
-              <option value="">選択してください</option>
-              <option value="12:00">ランチ 12:00</option>
-              <option value="12:30">ランチ 12:30</option>
-              <option value="18:00">ディナー 18:00</option>
-              <option value="18:30">ディナー 18:30</option>
-            </select>
-          </motion.div>
-
-          <motion.div
-            whileHover={{ scale: 1.02 }}
-            transition={{ duration: 0.2 }}
-          >
-            <label className="block text-sm font-inter mb-2 florilege-text-dark flex items-center">
-              <Users size={16} className="mr-1" />
-              人数 *
-            </label>
-            <select
-              name="guests"
-              value={formData.guests}
-              onChange={handleChange}
-              required
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent transition-all duration-300"
-            >
-              <option value="1">1名</option>
-              <option value="2">2名</option>
-              <option value="3">3名</option>
-              <option value="4">4名</option>
-              <option value="5">5名</option>
-              <option value="6">6名</option>
-              <option value="7">7名</option>
-              <option value="8">8名</option>
-            </select>
-          </motion.div>
-        </div>
-
-        {/* Message */}
-        <motion.div
-          whileHover={{ scale: 1.02 }}
-          transition={{ duration: 0.2 }}
-        >
-          <label className="block text-sm font-inter mb-2 florilege-text-dark flex items-center">
-            <MessageSquare size={16} className="mr-1" />
-            ご要望・アレルギー等
-          </label>
+        <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }}>
+          <label className="block text-sm font-inter mb-2 florilege-text-dark flex items-center"><MessageSquare size={16} className="mr-1" /> Project Details</label>
           <textarea
             name="message"
             value={formData.message}
             onChange={handleChange}
             rows={4}
             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent transition-all duration-300 resize-none"
-            placeholder="特別なご要望やアレルギーがございましたらお書きください"
+            placeholder="Tell us about your project, requirements, and any specific features you have in mind."
           />
         </motion.div>
 
-        {/* Submit Button */}
         <motion.div
           className="text-center pt-6"
           whileHover={{ scale: 1.02 }}
@@ -296,7 +199,7 @@ export default function ContactForm() {
             ) : (
               <>
                 <Send size={18} />
-                <span>送信する</span>
+                <span>Send Request</span>
               </>
             )}
           </Button>
