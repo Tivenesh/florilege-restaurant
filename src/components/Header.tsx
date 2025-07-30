@@ -31,80 +31,133 @@ export default function Header() {
 
   return (
     <>
-      <motion.header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${isScrolled
-            ? 'bg-white/98 backdrop-blur-xl shadow-sm border-b border-gray-100/50'
-            : 'bg-white/95 backdrop-blur-md'
-          }`}
-        initial={{ y: -100 }}
-        animate={{ y: isMenuOpen ? "-100%" : 0 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
-      >
-        <div className="max-w-7xl mx-auto px-8 lg:px-12 py-6 flex justify-between items-center">
-          {/* Logo */}
-          <motion.div
-            className={`font-serif text-2xl lg:text-3xl tracking-[0.2em] transition-colors duration-500 text-gray-900 cursor-pointer`}
-            whileHover={{ scale: 1.02 }}
-            transition={{ duration: 0.3 }}
+      {/* Main Header - hides when menu is open */}
+      <AnimatePresence>
+        {!isMenuOpen && (
+          <motion.header
+            className="fixed top-0 left-0 right-0 z-50 transition-all duration-700"
+            initial={{ y: -100 }}
+            animate={{ y: 0 }}
+            exit={{ y: -100 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
           >
-            <button
-              onClick={() => scrollToSection('home')}
-              className="hover:opacity-80 transition-opacity duration-300"
-            >
-              {"BuildUrWèb".split("").map((letter, index) => (
-                <span
-                  key={index}
-                  className="inline-block hover:scale-110 transition-transform duration-200"
-                  style={{ transitionDelay: `${index * 20}ms` }}
-                >
-                  {letter}
-                </span>
-              ))}
-            </button>
-          </motion.div>
-
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-12">
-            <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
-              <Button
-                onClick={() => scrollToSection('get-a-quote')}
-                className={`font-light text-sm tracking-[0.1em] rounded-full px-8 py-2.5 border transition-all duration-300 bg-gray-900 text-white border-gray-900 hover:bg-gray-800`}
-              >
-                Get a Quote →
-              </Button>
-            </motion.div>
-
-            <motion.button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className={`font-light text-sm tracking-[0.15em] uppercase flex items-center space-x-3 transition-all duration-300 text-gray-700 hover:text-gray-900`}
-              whileHover={{ y: -1 }}
-              transition={{ duration: 0.2 }}
-            >
-              <span>Menu</span>
+            <div className="max-w-7xl mx-auto px-8 lg:px-12 py-6 flex justify-between items-center">
+              {/* Logo */}
               <motion.div
-                animate={{ rotate: isMenuOpen ? 180 : 0 }}
-                transition={{ duration: 0.4, ease: "easeInOut" }}
+                className={`font-serif text-2xl lg:text-3xl tracking-[0.2em] transition-colors duration-500 text-gray-900 cursor-pointer`}
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.3 }}
               >
-                <Menu size={18} strokeWidth={1} />
+                <button
+                  onClick={() => scrollToSection('home')}
+                  className="hover:opacity-80 transition-opacity duration-300"
+                >
+                  {"BuildUrWèb".split("").map((letter, index) => (
+                    <span
+                      key={index}
+                      className="inline-block hover:scale-110 transition-transform duration-200"
+                      style={{ transitionDelay: `${index * 20}ms` }}
+                    >
+                      {letter}
+                    </span>
+                  ))}
+                </button>
               </motion.div>
-            </motion.button>
-          </div>
 
-          {/* Mobile Menu Button */}
-          <motion.button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className={`lg:hidden transition-colors duration-300 text-gray-900`}
-            whileTap={{ scale: 0.95 }}
+              {/* Desktop Navigation */}
+              <div className="hidden lg:flex items-center space-x-12">
+                <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
+                  <Button
+                    onClick={() => scrollToSection('get-a-quote')}
+                    className={`font-light text-sm tracking-[0.1em] rounded-full px-8 py-2.5 border transition-all duration-300 bg-gray-900 text-white border-gray-900 hover:bg-gray-800`}
+                  >
+                    Get a Quote →
+                  </Button>
+                </motion.div>
+
+                <motion.button
+                  onClick={() => setIsMenuOpen(!isMenuOpen)}
+                  className={`font-light text-sm tracking-[0.15em] uppercase flex items-center space-x-3 transition-all duration-300 text-gray-700 hover:text-gray-900`}
+                  whileHover={{ y: -1 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <span>Menu</span>
+                  <motion.div
+                    animate={{ rotate: isMenuOpen ? 180 : 0 }}
+                    transition={{ duration: 0.4, ease: "easeInOut" }}
+                  >
+                    <Menu size={18} strokeWidth={1} />
+                  </motion.div>
+                </motion.button>
+              </div>
+
+              {/* Mobile Menu Button */}
+              <motion.button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className={`lg:hidden transition-colors duration-300 text-gray-900`}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Menu size={24} strokeWidth={1.5} />
+              </motion.button>
+            </div>
+          </motion.header>
+        )}
+      </AnimatePresence>
+
+      {/* Menu Header - appears when menu is open */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.header
+            className="fixed top-0 left-0 right-0 z-50"
+            initial={{ y: -100 }}
+            animate={{ y: 0 }}
+            exit={{ y: -100 }}
+            transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
           >
-            <motion.div
-              animate={{ rotate: isMenuOpen ? 180 : 0 }}
-              transition={{ duration: 0.4 }}
-            >
-              {isMenuOpen ? <X size={24} strokeWidth={1.5} /> : <Menu size={24} strokeWidth={1.5} />}
-            </motion.div>
-          </motion.button>
-        </div>
-      </motion.header>
+            <div className="max-w-7xl mx-auto px-8 lg:px-12 py-6 flex justify-end items-center">
+              {/* Buttons Container */}
+              <div className="flex items-center space-x-12">
+                {/* Quote Button */}
+                <motion.div
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.98 }}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.3, duration: 0.4 }}
+                >
+                  <Button
+                    onClick={() => scrollToSection('get-a-quote')}
+                    className="font-light text-sm tracking-[0.1em] rounded-full px-8 py-2.5 border transition-all duration-300 bg-gray-900 text-white border-gray-900 hover:bg-gray-800"
+                  >
+                    Get a Quote →
+                  </Button>
+                </motion.div>
+
+                {/* Close Button */}
+                <motion.button
+                  onClick={() => setIsMenuOpen(false)}
+                  className="font-light text-sm tracking-[0.15em] uppercase flex items-center space-x-3 transition-all duration-300 text-gray-700 hover:text-gray-900"
+                  whileHover={{ y: -1 }}
+                  transition={{ duration: 0.2 }}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 20 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <span>Close</span>
+                  <motion.div
+                    initial={{ rotate: 0 }}
+                    animate={{ rotate: 180 }}
+                    transition={{ duration: 0.4, ease: "easeInOut", delay: 0.2 }}
+                  >
+                    <X size={18} strokeWidth={1} />
+                  </motion.div>
+                </motion.button>
+              </div>
+            </div>
+          </motion.header>
+        )}
+      </AnimatePresence>
 
       {/* Navigation Menu Overlay */}
       <AnimatePresence>

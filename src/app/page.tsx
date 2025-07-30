@@ -11,9 +11,9 @@ export default function Home() {
     <main className="min-h-screen">
       <Header />
       <HeroSection />
-      <AboutSection />
+      <ServicesSection />
       <ServicesSection /> {/* Replaced ChefSection with ServicesSection */}
-
+      <AboutSection />
       {/* Get a Quote Section */}
       <section id="get-a-quote" className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6">
