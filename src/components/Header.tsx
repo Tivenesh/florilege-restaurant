@@ -51,7 +51,7 @@ export default function Header() {
               onClick={() => scrollToSection('home')}
               className="hover:opacity-80 transition-opacity duration-300"
             >
-              {"BuildUrWeb".split("").map((letter, index) => (
+              {"BuildUrWèb".split("").map((letter, index) => (
                 <span
                   key={index}
                   className="inline-block hover:scale-110 transition-transform duration-200"
@@ -173,7 +173,7 @@ export default function Header() {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.9 }}
               >
-                <p className="text-lg tracking-[0.1em]">BuildUrWeb</p>
+                <p className="text-lg tracking-[0.1em]">BuildUrWèb</p>
                 <div className="space-y-2">
                   <p>Digital Craftsmanship</p>
                   <p>Johor Bahru, Malaysia</p>
@@ -182,8 +182,8 @@ export default function Header() {
                   whileHover={{ scale: 1.02 }}
                   className="pt-4"
                 >
-                  <a href="mailto:hello@buildurweb.com" className="hover:opacity-70 transition-opacity duration-300">
-                    hello@buildurweb.com
+                  <a href="mailto:hello@BuildUrWèb.com" className="hover:opacity-70 transition-opacity duration-300">
+                    hello@BuildUrWèb.com
                   </a>
                 </motion.p>
               </motion.div>

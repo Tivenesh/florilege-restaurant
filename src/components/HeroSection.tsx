@@ -22,7 +22,7 @@ export default function HeroSection() {
         <div className="absolute inset-0">
           <img
             src="https://ext.same-assets.com/1838283741/2047500388.jpeg"
-            alt="Florilège Restaurant Interior"
+            alt="BuildUrWeb Abstract Background"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-black/20"></div>
@@ -43,7 +43,7 @@ export default function HeroSection() {
       >
         <motion.img
           src="https://ext.same-assets.com/1838283741/2047500388.jpeg"
-          alt="Florilège Restaurant Interior"
+          alt="Modern restaurant interior"
           className="w-[90%] h-[70%] object-cover rounded-xl"
           initial={{ scale: 1.1 }}
           animate={{ scale: 1 }}
@@ -139,27 +139,28 @@ export default function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.8, ease: "easeOut" }}
         >
-          {"Florilège".split("").map((letter, index) => (
+          {"BuildUrWèb".split("").map((letter, index) => (
             <motion.span
               key={index}
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1 + index * 0.1, duration: 0.5 }}
-              className="inline-block"
+              className="inline-block cursor-pointer"
+              whileHover={{ scale: 1.2, y: -10, color: "#a7f3d0" }}
             >
               {letter}
             </motion.span>
           ))}
         </motion.h1>
 
-        {/* Japanese Subtitle */}
+        {/* Updated the subtitle to the company tagline */}
         <motion.p
           className="font-inter text-lg md:text-xl tracking-wide opacity-90"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 0.9, y: 0 }}
           transition={{ duration: 1, delay: 1.5, ease: "easeOut" }}
         >
-          どなたにお越しいただくかで、大切なことがお味わいできます。
+          Where design meets function
         </motion.p>
       </motion.div>
 

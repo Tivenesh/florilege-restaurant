@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { WebLogo } from "@/components/ui/web-logo";
 
 export function LoadingAnimation() {
   return (
@@ -12,23 +11,41 @@ export function LoadingAnimation() {
       exit={{ y: "-100%" }}
       transition={{ duration: 1.0, ease: [0.22, 1, 0.36, 1] }}
     >
-      <motion.div
-        className="text-center space-y-6"
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.4 }}
-      >
-        <div className="flex justify-center">
-          <div className="w-24 h-24 border-2 border-gray-900 rounded-full flex items-center justify-center">
-            <WebLogo className="w-12 h-12 text-gray-900" />
-          </div>
+      {/* Centered content, styled for a white background */}
+      <div className="relative z-10 flex flex-col justify-center items-center text-center text-gray-900">
+        <div className="mb-8">
+          {/* This div now animates the rotation */}
+          <motion.div
+            className="w-20 h-20 border-2 border-gray-900 rounded-full flex items-center justify-center"
+            animate={{ rotate: 360 }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+          >
+            <svg width="40" height="40" viewBox="0 0 40 40" className="text-gray-900 fill-current">
+              <circle cx="20" cy="20" r="3" />
+              <circle cx="20" cy="10" r="2" />
+              <circle cx="20" cy="30" r="2" />
+              <circle cx="10" cy="20" r="2" />
+              <circle cx="30" cy="20" r="2" />
+              <circle cx="14" cy="14" r="1.5" />
+              <circle cx="26" cy="26" r="1.5" />
+              <circle cx="26" cy="14" r="1.5" />
+              <circle cx="14" cy="26" r="1.5" />
+            </svg>
+          </motion.div>
         </div>
-        <h1 className="font-playfair text-4xl md:text-5xl font-light tracking-widest text-gray-900">
-          BuildUrWeb
+
+        <h1 className="font-playfair text-5xl md:text-7xl tracking-widest mb-8">
+          BuildUrWèb
         </h1>
-        <p className="font-inter text-sm tracking-wide text-gray-600 font-light">
+        
+        <p className="font-inter text-lg md:text-xl tracking-wide text-gray-600">
           Where design meets function
         </p>
-      </motion.div>
+      </div>
     </motion.div>
   );
 }
