@@ -32,55 +32,69 @@ export default function Header() {
   return (
     <>
       <motion.header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          isScrolled ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-white/90 backdrop-blur-sm'
-        }`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${isScrolled
+            ? 'bg-white/98 backdrop-blur-xl shadow-sm border-b border-gray-100/50'
+            : 'bg-white/95 backdrop-blur-md'
+          }`}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
       >
-        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          {/* Logo */}
+        <div className="max-w-7xl mx-auto px-8 lg:px-12 py-6 flex justify-between items-center">
+          {/* Logo - Spaced out letters like in the reference */}
           <motion.div
-            className="font-playfair text-2xl tracking-widest florilege-text-dark cursor-pointer"
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.2 }}
+            className={`font-serif text-2xl lg:text-3xl tracking-[0.3em] transition-colors duration-500 text-gray-900 cursor-pointer`}
+            whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.3 }}
           >
-            <button onClick={() => scrollToSection('home')} className="hover:opacity-70 elegant-transition">
-              Florilège
+            <button
+              onClick={() => scrollToSection('home')}
+              className="hover:opacity-80 transition-opacity duration-300"
+            >
+              {"Florilège".split("").map((letter, index) => (
+                <span
+                  key={index}
+                  className="inline-block hover:scale-110 transition-transform duration-200"
+                  style={{ transitionDelay: `${index * 20}ms` }}
+                >
+                  {letter}
+                </span>
+              ))}
             </button>
           </motion.div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center space-x-12">
             <motion.button
               onClick={() => scrollToSection('en')}
-              className="font-inter text-sm tracking-wide hover:opacity-70 elegant-transition"
-              whileHover={{ y: -2 }}
+              className={`font-light text-sm tracking-[0.15em] uppercase transition-all duration-300 text-gray-700 hover:text-gray-900`}
+              whileHover={{ y: -1 }}
               transition={{ duration: 0.2 }}
             >
-              English
+              Japanese
             </motion.button>
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+
+            <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
               <Button
                 onClick={() => scrollToSection('reservations')}
-                className="bg-black text-white rounded-full px-6 py-2 hover:bg-gray-800 elegant-transition"
+                className={`font-light text-sm tracking-[0.1em] rounded-full px-8 py-2.5 border transition-all duration-300 bg-gray-900 text-white border-gray-900 hover:bg-gray-800`}
               >
                 Reservations →
               </Button>
             </motion.div>
+
             <motion.button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="font-inter text-sm tracking-wide hover:opacity-70 elegant-transition flex items-center space-x-2"
-              whileHover={{ y: -2 }}
+              className={`font-light text-sm tracking-[0.15em] uppercase flex items-center space-x-3 transition-all duration-300 text-gray-700 hover:text-gray-900`}
+              whileHover={{ y: -1 }}
               transition={{ duration: 0.2 }}
             >
               <span>Menu</span>
               <motion.div
-                animate={{ rotate: isMenuOpen ? 90 : 0 }}
-                transition={{ duration: 0.3 }}
+                animate={{ rotate: isMenuOpen ? 180 : 0 }}
+                transition={{ duration: 0.4, ease: "easeInOut" }}
               >
-                <Menu size={16} />
+                <Menu size={18} strokeWidth={1} />
               </motion.div>
             </motion.button>
           </div>
@@ -88,14 +102,14 @@ export default function Header() {
           {/* Mobile Menu Button */}
           <motion.button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden"
-            whileTap={{ scale: 0.9 }}
+            className={`lg:hidden transition-colors duration-300 text-gray-900`}
+            whileTap={{ scale: 0.95 }}
           >
             <motion.div
-              animate={{ rotate: isMenuOpen ? 90 : 0 }}
-              transition={{ duration: 0.3 }}
+              animate={{ rotate: isMenuOpen ? 180 : 0 }}
+              transition={{ duration: 0.4 }}
             >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              {isMenuOpen ? <X size={24} strokeWidth={1.5} /> : <Menu size={24} strokeWidth={1.5} />}
             </motion.div>
           </motion.button>
         </div>
@@ -109,7 +123,7 @@ export default function Header() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.4 }}
           >
             {/* Left side - Images */}
             <motion.div
@@ -117,7 +131,7 @@ export default function Header() {
               initial={{ x: -100, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: -100, opacity: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
             >
               <motion.img
                 src="https://ext.same-assets.com/1838283741/2047500388.jpeg"
@@ -125,25 +139,25 @@ export default function Header() {
                 className="w-full h-full object-cover"
                 initial={{ scale: 1.1 }}
                 animate={{ scale: 1 }}
-                transition={{ duration: 0.8 }}
+                transition={{ duration: 1.2 }}
               />
               <motion.div
-                className="absolute inset-0 bg-black/10"
+                className="absolute inset-0 bg-black/20"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 0.3 }}
+                transition={{ delay: 0.4 }}
               />
             </motion.div>
 
             {/* Right side - Menu */}
             <motion.div
-              className="w-full lg:w-1/2 p-12 flex flex-col justify-center"
+              className="w-full lg:w-1/2 p-16 flex flex-col justify-center"
               initial={{ x: 100, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: 100, opacity: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <nav className="space-y-8">
+              <nav className="space-y-12">
                 {[
                   { id: 'home', label: 'Home' },
                   { id: 'concept', label: 'Concept' },
@@ -154,11 +168,11 @@ export default function Header() {
                   <motion.button
                     key={item.id}
                     onClick={() => scrollToSection(item.id)}
-                    className="block text-2xl font-playfair hover:opacity-70 elegant-transition text-left"
-                    initial={{ y: 30, opacity: 0 }}
+                    className="block text-3xl lg:text-4xl font-light tracking-[0.05em] hover:opacity-70 transition-all duration-300 text-left text-gray-900"
+                    initial={{ y: 40, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 0.3 + index * 0.1 }}
-                    whileHover={{ x: 20, scale: 1.05 }}
+                    transition={{ delay: 0.4 + index * 0.1, duration: 0.6 }}
+                    whileHover={{ x: 12, scale: 1.02 }}
                   >
                     {item.label}
                   </motion.button>
@@ -166,15 +180,24 @@ export default function Header() {
               </nav>
 
               <motion.div
-                className="mt-12 space-y-4 text-sm font-inter text-gray-600"
-                initial={{ y: 30, opacity: 0 }}
+                className="mt-16 space-y-6 text-sm font-light text-gray-500 leading-relaxed"
+                initial={{ y: 40, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.8 }}
+                transition={{ delay: 0.9 }}
               >
-                <p>フロリレージュ</p>
-                <p>105-0001<br />東京都港区虎ノ門5-10-7<br />麻布台ヒルズ ガーデンプラザD 2F</p>
-                <motion.p whileHover={{ scale: 1.05 }}>
-                  <a href="tel:03-6435-8018" className="hover:opacity-70">03-6435-8018</a>
+                <p className="text-lg tracking-[0.1em]">フロリレージュ</p>
+                <div className="space-y-2">
+                  <p>105-0001</p>
+                  <p>東京都港区虎ノ門5-10-7</p>
+                  <p>麻布台ヒルズ ガーデンプラザD 2F</p>
+                </div>
+                <motion.p
+                  whileHover={{ scale: 1.02 }}
+                  className="pt-4"
+                >
+                  <a href="tel:03-6435-8018" className="hover:opacity-70 transition-opacity duration-300">
+                    03-6435-8018
+                  </a>
                 </motion.p>
               </motion.div>
             </motion.div>

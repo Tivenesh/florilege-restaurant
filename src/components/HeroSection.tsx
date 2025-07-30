@@ -35,19 +35,22 @@ export default function HeroSection() {
     <section id="home" className="relative h-screen overflow-hidden">
       {/* Background Image with Parallax */}
       <motion.div
-        className="absolute inset-0"
-        style={{ y: imageY }}
+        className="absolute inset-0 flex justify-center items-center "
+        style={{ y: imageY }
+
+
+        }
       >
         <motion.img
           src="https://ext.same-assets.com/1838283741/2047500388.jpeg"
           alt="Florilège Restaurant Interior"
-          className="w-full h-[120%] object-cover"
+          className="w-[90%] h-[70%] object-cover rounded-xl"
           initial={{ scale: 1.1 }}
           animate={{ scale: 1 }}
           transition={{ duration: 1.5, ease: "easeOut" }}
         />
         <motion.div
-          className="absolute inset-0 bg-black"
+          className="absolute inset-0 rounded-xl"
           style={{ opacity: overlayOpacity }}
           initial={{ opacity: 0.2 }}
         />
