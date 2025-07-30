@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import zafranImage from '../images/zafran.png';
 
 export default function AboutSection() {
   const [titleRef, titleInView] = useInView({ threshold: 0.3, triggerOnce: true });
@@ -11,7 +12,6 @@ export default function AboutSection() {
 
   // TODO: Replace these placeholder image URLs with actual photos of the founders.
   const tiveneshImage = "https://images.unsplash.com/photo-1557862921-37829c790f19?q=80&w=2071&auto=format&fit=crop";
-  const zafranImage = "https://images.unsplash.com/photo-1531590878845-12627191e687?q=80&w=1974&auto=format&fit=crop";
 
 
   const containerVariants = {
@@ -82,14 +82,14 @@ export default function AboutSection() {
             transition={{ duration: 1, delay: 0.3 }}
           >
             <div className="relative h-96 lg:h-[500px] overflow-hidden rounded-lg group">
-                <motion.img
-                  src={tiveneshImage}
-                  alt="Tivenesh, Co-founder of BuildUrWeb"
-                  className="w-full h-full object-cover"
-                  initial={{ scale: 1.1 }}
-                  animate={{ scale: 1 }}
-                  transition={{ duration: 0.6, ease: "easeInOut" }}
-                />
+              <motion.img
+                src={tiveneshImage}
+                alt="Tivenesh, Co-founder of BuildUrWeb"
+                className="w-full h-full object-cover"
+                initial={{ scale: 1.1 }}
+                animate={{ scale: 1 }}
+                transition={{ duration: 0.6, ease: "easeInOut" }}
+              />
             </div>
           </motion.div>
 
@@ -103,7 +103,7 @@ export default function AboutSection() {
               Tivenesh
             </span>
             <h3 className="font-playfair text-3xl md:text-4xl florilege-text-dark">
-              Co-Founder & Lead Developer
+              Developer
             </h3>
             <p className="text-gray-600 leading-relaxed">
               As the technical architect of BuildUrWeb, Tivenesh transforms complex ideas into clean, efficient, and scalable code. His passion lies in building robust back-end systems and dynamic front-end interfaces that perform flawlessly.
@@ -126,10 +126,10 @@ export default function AboutSection() {
             transition={{ duration: 1, delay: 0.3 }}
           >
             <span className="font-playfair text-sm tracking-widest text-gray-500 uppercase">
-              Zafran
+              Zafran Sakowi
             </span>
             <h3 className="font-playfair text-3xl md:text-4xl florilege-text-dark">
-              Co-Founder & Creative Director
+              Developer
             </h3>
             <p className="text-gray-600 leading-relaxed">
               Zafran is the visionary designer behind our projects. With a keen eye for aesthetics and a deep understanding of user experience, he ensures every website is not only beautiful but also intuitive, engaging, and perfectly aligned with our client's brand.
@@ -143,14 +143,14 @@ export default function AboutSection() {
             transition={{ duration: 1, delay: 0.5 }}
           >
             <div className="relative h-96 lg:h-[500px] overflow-hidden rounded-lg group">
-                <motion.img
-                  src={zafranImage}
-                  alt="Zafran, Co-founder of BuildUrWeb"
-                  className="w-full h-full object-cover"
-                  initial={{ scale: 1.1 }}
-                  animate={{ scale: 1 }}
-                  transition={{ duration: 0.6, ease: "easeInOut" }}
-                />
+              <motion.img
+                src={zafranImage.src}
+                alt="Zafran Sakowi, Co-founder of BuildUrWeb"
+                className="w-full h-full object-cover"
+                initial={{ scale: 1.1 }}
+                animate={{ scale: 1 }}
+                transition={{ duration: 0.6, ease: "easeInOut" }}
+              />
             </div>
           </motion.div>
         </motion.div>
