@@ -182,29 +182,66 @@ export default function Header() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4 }}
           >
+            {/* Logo Animation Section - replaces the image */}
             <motion.div
-              className="hidden lg:block w-1/2 relative overflow-hidden"
+              className="hidden lg:flex w-1/2 items-center justify-center bg-white"
               initial={{ x: -100, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: -100, opacity: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
             >
-              <motion.img
-                src="https://images.unsplash.com/photo-1557862921-37829c790f19?q=80&w=2071&auto=format&fit=crop"
-                alt="Two professionals collaborating"
-                className="w-full h-full object-cover"
-                initial={{ scale: 1.1 }}
-                animate={{ scale: 1 }}
-                transition={{ duration: 1.2 }}
-              />
-              <motion.div
-                className="absolute inset-0 bg-black/20"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.4 }}
-              />
-            </motion.div>
+              <div className="flex flex-col items-center text-center text-gray-900">
+                {/* Animated Logo Circle */}
+                <motion.div
+                  className="mb-12"
+                  initial={{ scale: 0, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
+                >
+                  <motion.div
+                    className="w-24 h-24 border-2 border-gray-900 rounded-full flex items-center justify-center"
+                    animate={{ rotate: 360 }}
+                    transition={{
+                      duration: 8,
+                      repeat: Infinity,
+                      ease: "linear",
+                    }}
+                  >
+                    <svg width="48" height="48" viewBox="0 0 40 40" className="text-gray-900 fill-current">
+                      <circle cx="20" cy="20" r="3" />
+                      <circle cx="20" cy="10" r="2" />
+                      <circle cx="20" cy="30" r="2" />
+                      <circle cx="10" cy="20" r="2" />
+                      <circle cx="30" cy="20" r="2" />
+                      <circle cx="14" cy="14" r="1.5" />
+                      <circle cx="26" cy="26" r="1.5" />
+                      <circle cx="26" cy="14" r="1.5" />
+                      <circle cx="14" cy="26" r="1.5" />
+                    </svg>
+                  </motion.div>
+                </motion.div>
 
+                {/* Animated Company Name */}
+                <motion.h1
+                  className="font-playfair text-4xl md:text-6xl tracking-widest mb-6"
+                  initial={{ y: 40, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.6, duration: 0.8 }}
+                >
+                  BuildUrWèb
+                </motion.h1>
+
+                {/* Animated Tagline */}
+                <motion.p
+                  className="font-inter text-base md:text-lg tracking-wide text-gray-600"
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.8, duration: 0.6 }}
+                >
+                  We Build It. You Own It. We Rock It.
+                </motion.p>
+              </div>
+            </motion.div>
             <motion.div
               className="w-full lg:w-1/2 p-16 flex flex-col justify-center"
               initial={{ x: 100, opacity: 0 }}
